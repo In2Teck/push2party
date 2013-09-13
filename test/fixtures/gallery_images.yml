@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  description: 
+  image_url: 
+  gallery_id: 
+  visible: false
+
+two:
+  description: 
+  image_url: 
+  gallery_id: 
+  visible: false

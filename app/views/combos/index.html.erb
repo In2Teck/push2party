@@ -1,0 +1,31 @@
+<h1>Listing combos</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Image url</th>
+    <th>Visible</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @combos.each do |combo| %>
+  <tr>
+    <td><%= combo.name %></td>
+    <td><%= combo.description %></td>
+    <td><%= combo.price %></td>
+    <td><%= combo.image_url %></td>
+    <td><%= combo.visible %></td>
+    <td><%= link_to 'Show', combo %></td>
+    <td><%= link_to 'Edit', edit_combo_path(combo) %></td>
+    <td><%= link_to 'Destroy', combo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Combo', new_combo_path %>
