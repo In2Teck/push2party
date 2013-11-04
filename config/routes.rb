@@ -8,7 +8,9 @@ Push2party::Application.routes.draw do
   resources :users
 
 
-  resources :items
+  resources :items do
+    match 'by_parent_id', :on => :collection
+  end
 
 
   resources :gallery_images

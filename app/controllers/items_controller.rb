@@ -80,4 +80,14 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def by_parent_id
+    @items = Item.where("parent_id = ?", params[:parent_id])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @items }
+    end
+  end
+
 end
