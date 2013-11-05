@@ -10,6 +10,7 @@ Push2party::Application.routes.draw do
 
   resources :items do
     match 'by_parent_id', :on => :collection
+    match 'by_parent_id_with_children', :on => :collection
   end
 
 

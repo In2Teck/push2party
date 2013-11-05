@@ -89,5 +89,17 @@ class ItemsController < ApplicationController
       format.json { render json: @items }
     end
   end
+  
+  def by_parent_id_with_children
+    @items = Item.where("parent_id = ?", params[:parent_id])
+    @items.each do |item|
+      item[:children] = Item.where("parent_id = ?", item.id)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @items }
+    end
+  end
 
 end
