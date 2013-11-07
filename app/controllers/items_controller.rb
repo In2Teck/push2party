@@ -102,7 +102,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: resut }
+      format.json { render json: result }
     end
   end
 
