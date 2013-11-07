@@ -91,17 +91,18 @@ class ItemsController < ApplicationController
   end
   
   def by_parent_id_with_children
+    result = []
     @items = Item.where("parent_id = ?", params[:parent_id])
     @items.each do |item|
       item[:children] = Item.where("parent_id = ? and price is not null and visible = ?", item.id, true)
-      if item[:children].size == 0
-        @items.delete(item)
+      if item[:children].size != 0
+        result << item
       end
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @items }
+      format.json { render json: resut }
     end
   end
 
