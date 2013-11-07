@@ -94,6 +94,9 @@ class ItemsController < ApplicationController
     @items = Item.where("parent_id = ?", params[:parent_id])
     @items.each do |item|
       item[:children] = Item.where("parent_id = ? and price is not null and visible = ?", item.id, true)
+      if item[:children].size == 0
+        @items.delete(item)
+      end
     end
 
     respond_to do |format|
