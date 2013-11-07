@@ -93,7 +93,7 @@ class ItemsController < ApplicationController
   def by_parent_id_with_children
     @items = Item.where("parent_id = ?", params[:parent_id])
     @items.each do |item|
-      item[:children] = Item.where("parent_id = ? and price is not null", item.id)
+      item[:children] = Item.where("parent_id = ? and price is not null and visible = ?", item.id, true)
     end
 
     respond_to do |format|
