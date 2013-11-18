@@ -11,6 +11,8 @@
 
 <% @coupons.each do |coupon| %>
   <tr>
+    <td><%= coupon.name %></td>
+    <td><%= coupon.image_url_thumb %></td>
     <td><%= coupon.image_url %></td>
     <td><%= coupon.visible %></td>
     <td><%= link_to 'Show', coupon %></td>
