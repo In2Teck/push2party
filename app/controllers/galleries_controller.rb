@@ -6,7 +6,7 @@ class GalleriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @galleries }
+      format.json { render json: @galleries, :include => :gallery_images }
     end
   end
 
