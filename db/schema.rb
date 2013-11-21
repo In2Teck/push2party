@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119170100) do
+ActiveRecord::Schema.define(:version => 20131121203109) do
 
   create_table "ads", :force => true do |t|
     t.string   "image_url"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20131119170100) do
   create_table "users", :force => true do |t|
     t.string   "firstname"
     t.string   "lastname"
-    t.integer  "phone"
+    t.string   "phone"
     t.string   "email"
     t.boolean  "subscribed"
     t.datetime "created_at", :null => false
