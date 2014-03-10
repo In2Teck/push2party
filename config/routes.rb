@@ -1,4 +1,7 @@
 Push2party::Application.routes.draw do
+  resources :sponsors
+
+
   resources :ads
 
 
