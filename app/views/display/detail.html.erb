@@ -37,7 +37,7 @@ logger.info order %>
 		<td class="header" style="width:30%"> <strong>RP</strong> </td>
 	</tr>
 	<tr>
-		<td class="celda"> <%= @orden.created_at %> </td>
+		<td class="celda"> <%= @orden.created_at.in_time_zone("Mexico City") %> </td>
 		<td class="celda"> <%= order["fecha"] %> </td>
 		<td class="celda"> <%= order["rp_id"] %> </td>
 	</tr>
