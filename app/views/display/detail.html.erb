@@ -1,0 +1,104 @@
+<div style="width:100%; text-align:center;"><h1>Detalle de orden</h1></div>
+<br/>
+<% order = JSON.parse(@orden["data"])
+logger.info order %>
+
+<%= link_to 'Back', ordenes_path %>
+<br/><br/>
+<table style="width:100%; border:solid 1px;">
+	<tr>
+		<td class="header" colspan="6">
+			<strong>Datos de contacto</strong>
+		</td>
+	</tr>
+	<tr>
+		<td class="header" style="width:30%"> <strong>Nombre</strong> </td>
+		<td class="header" style="width:30%"> <strong>Email</strong> </td>
+		<td class="header" style="width:30%"> <strong>Telefono</strong> </td>
+	</tr>
+	<tr>
+		<td class="celda"> <%= order["nombre"] %> </td>
+		<td class="celda"> <%= order["email"] %> </td>
+		<td class="celda"> <%= order["telefono"] %> </td>
+	</tr>
+</table>
+
+<br/><br/><br/>
+
+<table style="width:100%; border:solid 1px;">
+	<tr>
+		<td class="header" colspan="6">
+			<strong>Datos del pedido</strong>
+		</td>
+	</tr>
+	<tr>
+		<td class="header" style="width:30%"> <strong>Fecha del pedido</strong> </td>
+		<td class="header" style="width:30%"> <strong>Fecha del evento</strong> </td>
+		<td class="header" style="width:30%"> <strong>RP</strong> </td>
+	</tr>
+	<tr>
+		<td class="celda"> <%= order["created_at"] %> </td>
+		<td class="celda"> <%= order["fecha"] %> </td>
+		<td class="celda"> <%= order["rp_id"] %> </td>
+	</tr>
+</table>
+<br/><br/>
+<table style="width:100%; border:solid 1px;">
+	<tr>
+		<td class="header" colspan="4">
+			<strong>Desglose</strong>
+		</td>
+	</tr>
+	<tr>
+		<td class="header"> <strong>Producto</strong> </td>
+		<td class="header"> <strong>Cantidad</strong> </td>
+		<td class="header"> <strong>Precio Unitario</strong> </td>
+		<td class="header"> <strong>Precio</strong> </td>
+	</tr>
+	<% total_items = 0
+		if order["compra"]["items"] != nil
+		order["compra"]["items"].each do |value, key| %>
+		<tr>
+			<% if not key["quantity"] == ""
+					cantidad = key["quantity"].to_i
+				else
+					cantidad = 0
+				end
+				
+				total_items += cantidad * key["price"].to_i
+			%>
+			<td class="celda"> <%= key["description"] %> </td>
+			<td class="celda"> <%= key["quantity"] %> </td>
+			<td class="celda">$ <%= key["price"] %> </td>
+			<td class="celda">$ <%= total_items %> </td>
+		</tr>
+		<% end %>
+	<% end %>
+	<% 	total_paquetes = 0
+		if order["compra"]["paquetes"] != nil
+		order["compra"]["paquetes"].each do |value, key| %>
+		<tr>
+			<% if not key["quantity"] == ""
+					cantidad = key["quantity"].to_i
+				else
+					cantidad = 0
+				end
+				
+				total_paquetes += cantidad * key["price"].to_i
+			%>
+			<td class="celda"> <%= key["description"] %> </td>
+			<td class="celda"> <%= key["quantity"] %> </td>
+			<td class="celda">$ <%= key["price"] %> </td>
+			<td class="celda">$ <%= total_paquetes %> </td>
+		</tr>
+		<% end %>
+	<% end %>
+	<tr><td colspan="4"> &nbsp; </td></tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td class="header"><strong>Total</strong></td>
+		<td class="celda">$ <%= total_items + total_paquetes %></td>
+	</tr>
+</table>
+

@@ -1,0 +1,67 @@
+<div style="width:100%; text-align:center;"><h1>Lista de Ordenes</h1></div>
+<br/>
+
+<table style="width:100%; border:solid 1px;">
+	<tr class="header">
+		<td class="celda">
+			<strong>Fecha del pedido</strong>
+		</td>
+		<td class="celda">
+			<strong>Nombre</strong>
+		</td>
+		<td class="celda">
+			<strong>Email</strong>
+		</td>
+		<td class="celda">
+			<strong>Telefono</strong>
+		</td>
+		<td class="celda">
+			<strong>Fecha del evento</strong>
+		</td>
+		<td class="celda">
+			<strong>RP</strong>
+		</td>
+		<td class="celda">
+			<strong>Total</strong>
+		</td>
+		<td class="celda">
+			<strong>Detalles</strong>
+		</td>
+	</tr>
+	<% @ordenes.each do |orden| %>
+	  <tr>
+		<% data = JSON.parse(orden.data)
+		
+		precio_total = 0
+		
+		data["compra"]["items"].each do |value, key|
+			if not key["quantity"] == ""
+				cantidad = key["quantity"].to_i
+			else
+				cantidad = 0
+			end
+			
+			precio_total += cantidad * key["price"].to_i
+		end
+		
+		data["compra"]["paquetes"].each do |value, key|
+			if not key["quantity"] == ""
+				cantidad = key["quantity"].to_i
+			else
+				cantidad = 0
+			end
+			
+			precio_total += cantidad * key["price"].to_i
+		end
+		%>
+		<td class="celda"><%= orden.created_at %></td>
+		<td class="celda"><%= data["nombre"] %></td>
+		<td class="celda"><%= data["email"] %></td>
+		<td class="celda"><%= data["telefono"] %></td>
+		<td class="celda"><%= data["fecha"] %></td>
+		<td class="celda"><%= orden.rp_id %></td>
+		<td class="celda">$ <%= precio_total %></td>
+		<td class="celda"><%= link_to 'Ver', detalle_path(:id => orden.id) %></td>
+	  </tr>
+	<% end %>
+</table>

@@ -1,4 +1,5 @@
 Push2party::Application.routes.draw do
+
   resources :sponsors
 
 
@@ -30,6 +31,10 @@ Push2party::Application.routes.draw do
   
 
 	match 'ping' => 'users#ping'
+	
+	match 'ordenes' => 'display#index'
+	
+	match 'detalle' => 'display#detail', :as => :detalle
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
