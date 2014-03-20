@@ -1,7 +1,6 @@
 <div style="width:100%; text-align:center;"><h1>Detalle de orden</h1></div>
 <br/>
-<% order = JSON.parse(@orden["data"])
-logger.info order %>
+<% order = JSON.parse(@orden["data"]) %>
 
 <%= link_to 'Back', ordenes_path %>
 <br/><br/>
@@ -59,17 +58,19 @@ logger.info order %>
 		if order["compra"]["items"] != nil
 		order["compra"]["items"].each do |value, key| %>
 		<tr>
-			<% if not key["quantity"] == ""
+			<% if key["quantity"] != ""
 					cantidad = key["quantity"].to_i
 				else
 					cantidad = 0
 				end
 				
-				total_items += cantidad * key["price"].to_i
-			if key["quantity"] != ""
+			total_items += cantidad * key["price"].to_i
+				
+			logger.info key["quantity"]
+			if key["quantity"] != "" or key["quantity"] != 0 or key["quantity"] != "0"
 			%>
 				<td class="celda"> <%= key["description"] %> </td>
-				<td class="celda"> <%= key["quantity"] %> </td>
+				<td class="celda"> <%= cantidad %> </td>
 				<td class="celda">$ <%= key["price"].to_f %> </td>
 				<td class="celda">$ <%= key["quantity"].to_f * key["price"].to_f  %> </td>
 			<% end %>
@@ -87,10 +88,10 @@ logger.info order %>
 				end
 				
 				total_paquetes += cantidad * key["price"].to_i
-			if key["quantity"] != "" 
+			if cantidad != "" or  cantidad != 0 or  cantidad != "0"
 			%>
 			<td class="celda"> <%= key["description"] %> </td>
-			<td class="celda"> <%= key["quantity"] %> </td>
+			<td class="celda"> <%= cantidad %> </td>
 			<td class="celda">$ <%= key["price"].to_f %> </td>
 			<td class="celda">$ <%= key["quantity"].to_f * key["price"].to_f %> </td>
 			<% end %>
