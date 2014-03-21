@@ -66,8 +66,7 @@
 				
 			total_items += cantidad * key["price"].to_i
 				
-			logger.info key["quantity"]
-			if key["quantity"] != "" or key["quantity"] != 0 or key["quantity"] != "0"
+			if cantidad != "" and cantidad != 0 and cantidad != "0"
 			%>
 				<td class="celda"> <%= key["description"] %> </td>
 				<td class="celda"> <%= cantidad %> </td>
@@ -88,7 +87,7 @@
 				end
 				
 				total_paquetes += cantidad * key["price"].to_i
-			if cantidad != "" or  cantidad != 0 or  cantidad != "0"
+			if cantidad != "" and cantidad != 0 and cantidad != "0"
 			%>
 			<td class="celda"> <%= key["description"] %> </td>
 			<td class="celda"> <%= cantidad %> </td>
