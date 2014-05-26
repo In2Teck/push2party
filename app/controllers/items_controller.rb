@@ -94,7 +94,7 @@ class ItemsController < ApplicationController
     result = []
     @items = Item.where("parent_id = ?", params[:parent_id])
     @items.each do |item|
-      item[:children] = Item.where("parent_id = ? and price is not null and visible = ?", item.id, true).order('PRIORITY ASC')
+      item[:children] = Item.where("parent_id = ? and price is not null and visible = ?", item.id, true).order('PRIORITY DESC')
       if item[:children].size != 0
         result << item
       end
