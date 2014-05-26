@@ -1,3 +1,3 @@
 class Sponsor < ActiveRecord::Base
-  attr_accessible :active, :image_url, :name
+  attr_accessible :active, :image_url, :name, :priority
 end
