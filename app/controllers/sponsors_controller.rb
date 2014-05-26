@@ -2,7 +2,7 @@ class SponsorsController < ApplicationController
   # GET /sponsors
   # GET /sponsors.json
   def index
-    @sponsors = Sponsor.all
+    @sponsors = Sponsor.order("PRIORITY ASC")
 
     respond_to do |format|
       format.html # index.html.erb

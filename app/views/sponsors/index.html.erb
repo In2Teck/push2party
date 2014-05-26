@@ -5,6 +5,7 @@
     <th>Name</th>
     <th>Image url</th>
     <th>Active</th>
+    <th>Priority</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +16,7 @@
     <td><%= sponsor.name %></td>
     <td><%= sponsor.image_url %></td>
     <td><%= sponsor.active %></td>
+    <td><%= sponsor.priority %></td>
     <td><%= link_to 'Show', sponsor %></td>
     <td><%= link_to 'Edit', edit_sponsor_path(sponsor) %></td>
     <td><%= link_to 'Destroy', sponsor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

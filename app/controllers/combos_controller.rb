@@ -2,7 +2,7 @@ class CombosController < ApplicationController
   # GET /combos
   # GET /combos.json
   def index
-    @combos = Combo.all
+    @combos = Combo.order("PRIORITY ASC")
 
     respond_to do |format|
       format.html # index.html.erb
