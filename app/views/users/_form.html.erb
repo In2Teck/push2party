@@ -31,6 +31,14 @@
     <%= f.label :subscribed %><br />
     <%= f.check_box :subscribed %>
   </div>
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.datetime_select :dob %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
